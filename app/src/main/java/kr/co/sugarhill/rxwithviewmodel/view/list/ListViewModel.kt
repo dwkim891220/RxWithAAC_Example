@@ -1,5 +1,6 @@
 package kr.co.sugarhill.rxwithviewmodel.view.list
 
+import android.arch.lifecycle.MutableLiveData
 import kr.co.sugarhill.rxwithviewmodel.network.FranchiseBrand
 import kr.co.sugarhill.rxwithviewmodel.network.NemoApiService
 import kr.co.sugarhill.rxwithviewmodel.util.ext.with
@@ -13,7 +14,7 @@ class ListViewModel(
 ) : AbstractViewModel() {
 
     val searchResult = SingleLiveEvent<ResultUIModel>()
-    val searchKeyword = SingleLiveEvent<String>()
+    val searchKeyword = MutableLiveData<String>()
 
     fun getFranchiseBrands(keyword : String){
         launch {
@@ -21,10 +22,14 @@ class ListViewModel(
                 .with(scheduler)
                 .subscribe(
                     { list ->
-                        searchResult.value = ResultUIModel(list, keyword = keyword)
+                        searchResult.postValue(
+                            ResultUIModel(list, keyword = keyword)
+                        )
                     },
                     { e ->
-                        searchResult.value = ResultUIModel(error = e)
+                        searchResult.postValue(
+                            ResultUIModel(error = e)
+                        )
                     }
                 )
         }

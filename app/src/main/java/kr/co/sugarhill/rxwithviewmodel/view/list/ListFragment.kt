@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_list.*
 import kr.co.sugarhill.rxwithviewmodel.R
 import kr.co.sugarhill.rxwithviewmodel.util.ext.visibilityBoolean
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.architecture.ext.sharedViewModel
 
 class ListFragment : Fragment() {
     val TAG = javaClass.simpleName
 
-    private val model: ListViewModel by viewModel()
+    private val model: ListViewModel by sharedViewModel()
     private lateinit var listAdapter : ListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
