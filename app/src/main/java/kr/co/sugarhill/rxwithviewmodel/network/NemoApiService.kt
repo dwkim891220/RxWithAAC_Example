@@ -1,5 +1,6 @@
 package kr.co.sugarhill.rxwithviewmodel.network
 
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,5 +13,5 @@ interface NemoApiService {
     @GET(ApiUrl.FRANCHISES_KEYWORDS)
     fun franchisesKeywords(
             @Query("Keyword") keyword: String
-    ): Call<List<FranchiseBrand>>
+    ): Single<List<FranchiseBrand>>
 }

@@ -6,5 +6,6 @@ package kr.co.sugarhill.rxwithviewmodel.network
 data class FranchiseBrand(
     val brandName: String?,
     val headquartersName: String?,
+    val logoPhotoUrl: String?,
     val logoPhotoId: String?
 )
